@@ -33,4 +33,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    //implementation 'androidx.ads:ads-identifier:1.0.0-alpha01'
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads:15.0.0'
+    // Used for the calls to addCallback() in the snippets on this page.
+    //implementation 'com.google.guava:guava:28.0-android'
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
