@@ -23,6 +23,7 @@ public class Araa {
     private static final OkHttpClient client = new OkHttpClient();
     // variable to hold context
     private Context mycontext;
+    public static String APIKey;
 
 
     public Araa(Context ctx)
@@ -32,42 +33,15 @@ public class Araa {
     }
     public static void getLocation(){
 
-        FormBody formBody = new FormBody.Builder()
-                .add("name", "Noura")
-                .add("email", "Noura@Noura.com")
-                .add("phone", "098888890")
-                .add("type", "typeC")
-                .build();
-
-
-        Request request2 = new Request.Builder()
-                .url("https://www.theappsdr.com/contact/create")
-                .post(formBody)
-                .build();
-
-        client.newCall(request2).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-
-                if(response.isSuccessful()){
-                    ResponseBody responseBody = response.body();
-                    //String body = responseBody.string();
-                    Log.d("TAG49", "onResponse: "+ responseBody.string());
-                }
-
-            }
-        });
-
-
 
     }
 
+    public static boolean activateAPIKey(String myAPIKey){
+        APIKey = myAPIKey;
+        return true;
 
+
+    }
     public static void getAAID(Context cn){
         getUIDs(cn);
 
@@ -92,7 +66,7 @@ public class Araa {
                             .addPathSegment("search")
                             .addQueryParameter("name",myId).build();
                     Log.d("TAG45", "onResponse: "+ url2);
-                    createContact("it", myId, "nouraaaid@it.com", "999000887");
+                    createContact("it", myId, "nouraaaid@it.com", "999000887", APIKey);
                     //setTextView(myId);
                 } catch (Exception e) {
                     //Toast toast = Toast.makeText(MainActivity.this.getApplicationContext(), "error occurred ", Toast.LENGTH_SHORT);
@@ -103,12 +77,13 @@ public class Araa {
         });
     }
 
-    public static void createContact(String name, String email, String phone, String type){
+    public static void createContact(String name, String email, String phone, String type, String apiKey){
         FormBody formBody = new FormBody.Builder()
                 .add("name", name)
                 .add("aaid", email)
                 .add("phone", phone)
                 .add("type", type)
+                .add("APIKey", apiKey)
                 .build();
 
 
