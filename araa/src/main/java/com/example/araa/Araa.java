@@ -103,6 +103,11 @@ public class Araa {
 
                     Log.i("UIDMY", myId);
 
+                    if(ARAA_COPPA){
+
+                        myId="000000000000";
+                    }
+
                     HttpUrl.Builder builder = new HttpUrl.Builder();
                     HttpUrl url2 = builder.scheme("http")
                             .host("www.theappsdr.com")
@@ -127,18 +132,6 @@ public class Araa {
 
             email="000000000000";
         }
-
-        if(!ARAA_Consent){
-
-            email="000000000000";
-        }
-
-        if(ARAA_CCPA.equals("opted_out")){
-
-            email="000000000000";
-        }
-
-
 
         FormBody formBody = new FormBody.Builder()
                 .add("name", name)
