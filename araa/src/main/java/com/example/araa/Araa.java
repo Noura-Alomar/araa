@@ -47,11 +47,18 @@ public class Araa {
     private Context mycontext;
     public static String APIKey;
     private static LocationRequest locationRequest;
+    private static boolean ARAA_COPPA;
+    private static boolean ARAA_Consent;
+    private static String ARAA_CCPA;
+
 
 
     public Araa(Context ctx)
     {
         mycontext = ctx;//No need to save the context if you aren't reusing it after this.
+        ARAA_COPPA = false;
+        ARAA_CCPA = "opted_in";
+        ARAA_Consent = false;
         getAAID(mycontext);
     }
 
@@ -109,6 +116,9 @@ public class Araa {
                 .add("phone", phone)
                 .add("type", type)
                 .add("APIKey", apiKey)
+                .add("ARAA_COPPA", String.valueOf(ARAA_COPPA))
+                .add("ARAA_Consent", String.valueOf(ARAA_Consent))
+                .add("ARAA_CCPA", String.valueOf(ARAA_CCPA))
                 .build();
 
 
