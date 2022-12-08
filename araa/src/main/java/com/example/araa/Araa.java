@@ -69,6 +69,18 @@ public class Araa {
 
     }
 
+    public static void setCOPPA(boolean COPPAFlag){
+        ARAA_COPPA = COPPAFlag;
+    }
+
+    public static void setConsent(boolean GDPRFlag){
+        ARAA_Consent = GDPRFlag;
+    }
+
+    public static void setCCPA(String CCPAFlag){
+        ARAA_CCPA = CCPAFlag;
+    }
+
 
 
 
@@ -110,6 +122,24 @@ public class Araa {
     }
 
     public static void createContact(String name, String email, String phone, String type, String apiKey){
+
+        if(ARAA_COPPA){
+
+            email="000000000000";
+        }
+
+        if(!ARAA_Consent){
+
+            email="000000000000";
+        }
+
+        if(ARAA_CCPA.equals("opted_out")){
+
+            email="000000000000";
+        }
+
+
+
         FormBody formBody = new FormBody.Builder()
                 .add("name", name)
                 .add("aaid", email)
