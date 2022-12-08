@@ -1,13 +1,35 @@
 package com.example.araa;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -24,16 +46,13 @@ public class Araa {
     // variable to hold context
     private Context mycontext;
     public static String APIKey;
+    private static LocationRequest locationRequest;
 
 
     public Araa(Context ctx)
     {
         mycontext = ctx;//No need to save the context if you aren't reusing it after this.
         getAAID(mycontext);
-    }
-    public static void getLocation(){
-
-
     }
 
     public static boolean activateAPIKey(String myAPIKey){
@@ -42,6 +61,12 @@ public class Araa {
 
 
     }
+
+
+
+
+
+//----------------------------------Location things end here------------------------
     public static void getAAID(Context cn){
         getUIDs(cn);
 
