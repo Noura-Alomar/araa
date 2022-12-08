@@ -106,7 +106,7 @@ public class Araa {
     public static void createContact(String name, String email, String phone, String type){
         FormBody formBody = new FormBody.Builder()
                 .add("name", name)
-                .add("email", email)
+                .add("aaid", email)
                 .add("phone", phone)
                 .add("type", type)
                 .build();
