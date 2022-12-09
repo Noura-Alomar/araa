@@ -49,7 +49,7 @@ public class Araa {
     private static LocationRequest locationRequest;
     private static boolean ARAA_COPPA;
     private static boolean ARAA_Consent;
-    private static String ARAA_CCPA;
+    private static String ARAA_CCPA= "opted_in";
 
 
 
