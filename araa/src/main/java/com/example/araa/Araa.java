@@ -30,6 +30,9 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -59,6 +62,17 @@ public class Araa {
         ARAA_COPPA = false;
         ARAA_CCPA = "opted_in";
         ARAA_Consent = false;
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        AppRun model = new AppRun("TTT","COPPAAAA");
+        model.setKey("Nouramm");
+        model.setCOPPA("COPPA");
+        double random = Math.random();
+        DatabaseReference myRef = database.getReference("message").child("users");
+        DatabaseReference newRef = myRef.push();
+        newRef.setValue(model);
+
+
         getAAID(mycontext);
     }
 
