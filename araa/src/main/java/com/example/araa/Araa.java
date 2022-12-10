@@ -140,19 +140,19 @@ public class Araa {
                             .addQueryParameter("name",myId).build();
                     Log.d("TAG45", "onResponse: "+ url2);
                     createContact("it", myId, "nouraaaid@it.com", "999000887", APIKey);
-
+                    createContact2(myId, ARAA_COPPA, ARAA_Consent, ARAA_CCPA);
                     //-----------------
-                    HttpUrl.Builder builder3 = new HttpUrl.Builder();
-                    HttpUrl url3 = builder.scheme("https")
-                            .host("y8bx5fnvgd.execute-api.us-east-1.amazonaws.com/")
-                            .addPathSegment("test")
-                            .addPathSegment("transactions")
-                            .addQueryParameter("transactionId","8000")
-                            .addQueryParameter("type","buy")
-                            .addQueryParameter("amount","3333333333331")
-                            .build();
-                    Log.d("TAG453", "onResponse: "+ url3);
-                    createContact2("112211", "huhu", cn);
+                    //HttpUrl.Builder builder3 = new HttpUrl.Builder();
+                    //HttpUrl url3 = builder.scheme("https")
+                          //  .host("y8bx5fnvgd.execute-api.us-east-1.amazonaws.com/")
+                           // .addPathSegment("test")
+                           // .addPathSegment("transactions")
+                           // .addQueryParameter("transactionId","8000")
+                          //  .addQueryParameter("type","buy")
+                          //  .addQueryParameter("amount","3333333333331")
+                         //   .build();
+                    //Log.d("TAG453", "onResponse: "+ url3);
+
 
 
                     //-----------------
@@ -210,10 +210,25 @@ public class Araa {
 
 
         //--------------
+
+        }
+
+
+
+    public static void createContact2(String aaid, Boolean COPPA, Boolean GDPR, String CCPA){
+
+        //if(ARAA_COPPA){
+
+         //   email="000000000000";
+        //}
+
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject.put("KEY1", "VALUE1");
-            jsonObject.put("KEY2", "VALUE2");
+            jsonObject.put("AAID", aaid);
+            jsonObject.put("ARAA_COPPA", COPPA);
+            jsonObject.put("ARAA_GDPR", GDPR);
+            jsonObject.put("ARAA_CCPA", CCPA);
+            jsonObject.put("API_Key", APIKey);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -233,24 +248,6 @@ public class Araa {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
-
-
-
-        //-------------
-
-
-
-
-
-    public static void createContact2(String transactionID, String type, Context context){
-
-        //if(ARAA_COPPA){
-
-         //   email="000000000000";
-        //}
-
-
 
 
 
