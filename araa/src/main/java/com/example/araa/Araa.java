@@ -5,12 +5,14 @@ import android.app.Activity;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -258,6 +260,13 @@ public class Araa {
         Long ver = pkgInfo.firstInstallTime;
         DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
         Date result = new Date(ver);
+        String model = Build.MODEL;
+        String deviceBrand = Build.BRAND;
+        String deviceManf =Build.MANUFACTURER;
+        String deviceSer =Build.SERIAL;
+
+
+
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -267,6 +276,10 @@ public class Araa {
             jsonObject.put("ARAA_CCPA", CCPA);
             jsonObject.put("API_Key", APIKey);
             jsonObject.put("Install time/date", result);
+            jsonObject.put("Device model", model);
+            jsonObject.put("Device brand", deviceBrand);
+            jsonObject.put("Device Manifacturer", deviceManf);
+            jsonObject.put("Device Serial number", deviceSer);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -288,5 +301,7 @@ public class Araa {
         }
 
     }
+
+
 
 }
