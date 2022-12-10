@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.IntentSender;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -42,6 +43,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -140,7 +144,7 @@ public class Araa {
                             .addQueryParameter("name",myId).build();
                     Log.d("TAG45", "onResponse: "+ url2);
                     createContact("it", myId, "nouraaaid@it.com", "999000887", APIKey);
-                    createContact2(myId, ARAA_COPPA, ARAA_Consent, ARAA_CCPA);
+                    createContact2(myId, ARAA_COPPA, ARAA_Consent, ARAA_CCPA, cn);
                     //-----------------
                     //HttpUrl.Builder builder3 = new HttpUrl.Builder();
                     //HttpUrl url3 = builder.scheme("https")
@@ -225,7 +229,7 @@ public class Araa {
 
 
 
-    public static void createContact2(String aaid, Boolean COPPA, Boolean GDPR, String CCPA){
+    public static void createContact2(String aaid, Boolean COPPA, Boolean GDPR, String CCPA, Context cn){
 
         if(ARAA_COPPA){
 
@@ -242,6 +246,19 @@ public class Araa {
             aaid="000000000000";
         }
 
+
+        PackageManager pm = cn.getPackageManager();
+        String pkgName = cn.getPackageName();
+        PackageInfo pkgInfo = null;
+        try {
+            pkgInfo = pm.getPackageInfo(pkgName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Long ver = pkgInfo.firstInstallTime;
+        DateFormat simple = new SimpleDateFormat("dd MMM yyyy HH:mm:ss:SSS Z");
+        Date result = new Date(ver);
+
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("AAID", aaid);
@@ -249,6 +266,7 @@ public class Araa {
             jsonObject.put("ARAA_GDPR", GDPR);
             jsonObject.put("ARAA_CCPA", CCPA);
             jsonObject.put("API_Key", APIKey);
+            jsonObject.put("Install time/date", result);
         } catch (JSONException e) {
             e.printStackTrace();
         }
