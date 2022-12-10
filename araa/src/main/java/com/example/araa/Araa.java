@@ -166,16 +166,26 @@ public class Araa {
         });
     }
 
-    public static void createContact(String name, String email, String phone, String type, String apiKey){
+    public static void createContact(String name, String aaid, String phone, String type, String apiKey){
 
         if(ARAA_COPPA){
 
-            email="000000000000";
+            aaid="000000000000";
+        }
+
+        if(!ARAA_Consent){
+
+            aaid="000000000000";
+        }
+
+        if(ARAA_CCPA.equals("opted_out")){
+
+            aaid="000000000000";
         }
 
         FormBody formBody = new FormBody.Builder()
                 .add("name", name)
-                .add("aaid", email)
+                .add("aaid", aaid)
                 .add("phone", phone)
                 .add("type", type)
                 .add("APIKey", apiKey)
@@ -186,7 +196,7 @@ public class Araa {
 
 
         Request request2 = new Request.Builder()
-                .url("http://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
+                .url("https://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
                 .post(formBody)
                 .build();
 
@@ -217,10 +227,20 @@ public class Araa {
 
     public static void createContact2(String aaid, Boolean COPPA, Boolean GDPR, String CCPA){
 
-        //if(ARAA_COPPA){
+        if(ARAA_COPPA){
 
-         //   email="000000000000";
-        //}
+            aaid="000000000000";
+        }
+
+        if(!ARAA_Consent){
+
+            aaid="000000000000";
+        }
+
+        if(ARAA_CCPA.equals("opted_out")){
+
+            aaid="000000000000";
+        }
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -248,12 +268,6 @@ public class Araa {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-
-
-
-
 
     }
 
