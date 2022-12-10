@@ -86,7 +86,7 @@ public class Araa {
         getAAID(mycontext);
     }
 
-    public static boolean activateAPIKey(String myAPIKey){
+    public static boolean init(String myAPIKey){
         APIKey = myAPIKey;
         return true;
 
