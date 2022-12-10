@@ -130,6 +130,22 @@ public class Araa {
                             .addQueryParameter("name",myId).build();
                     Log.d("TAG45", "onResponse: "+ url2);
                     createContact("it", myId, "nouraaaid@it.com", "999000887", APIKey);
+
+                    //-----------------
+                    HttpUrl.Builder builder3 = new HttpUrl.Builder();
+                    HttpUrl url3 = builder.scheme("https")
+                            .host("y8bx5fnvgd.execute-api.us-east-1.amazonaws.com/")
+                            .addPathSegment("test")
+                            .addPathSegment("transactions")
+                            .addQueryParameter("transactionId","8000")
+                            .addQueryParameter("type","buy")
+                            .addQueryParameter("amount","3333333333331")
+                            .build();
+                    Log.d("TAG453", "onResponse: "+ url3);
+                    createContact2("112211", "huhu", "22222222");
+
+
+                    //-----------------
                     //setTextView(myId);
                 } catch (Exception e) {
                     //Toast toast = Toast.makeText(MainActivity.this.getApplicationContext(), "error occurred ", Toast.LENGTH_SHORT);
@@ -177,6 +193,47 @@ public class Araa {
                     ResponseBody responseBody = response.body();
                     //String body = responseBody.string();
                     Log.d("TAG49", "onResponse: "+ responseBody.string());
+                }
+
+            }
+        });
+
+
+
+    }
+
+    public static void createContact2(String transactionID, String type, String amount){
+
+        //if(ARAA_COPPA){
+
+         //   email="000000000000";
+        //}
+
+        FormBody formBody = new FormBody.Builder()
+                .add("transactionId", "33333111")
+                .add("type", "ffff")
+                .add("amount", "3333121212")
+                .build();
+
+
+        Request request2 = new Request.Builder()
+                .url("https://y8bx5fnvgd.execute-api.us-east-1.amazonaws.com/test/transactions")
+                .post(formBody)
+                .build();
+
+        client.newCall(request2).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+
+                if(response.isSuccessful()){
+                    ResponseBody responseBody = response.body();
+                    //String body = responseBody.string();
+                    Log.d("TAG4933", "onResponse: "+ responseBody.string());
                 }
 
             }
