@@ -2,6 +2,7 @@ package com.example.araa;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
@@ -15,6 +16,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
@@ -32,6 +37,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -142,7 +149,7 @@ public class Araa {
                             .addQueryParameter("amount","3333333333331")
                             .build();
                     Log.d("TAG453", "onResponse: "+ url3);
-                    createContact2("112211", "huhu", "22222222");
+                    createContact2("112211", "huhu", cn);
 
 
                     //-----------------
@@ -176,7 +183,7 @@ public class Araa {
 
 
         Request request2 = new Request.Builder()
-                .url("https://www.theappsdr.com/contact/create")
+                .url("https://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
                 .post(formBody)
                 .build();
 
@@ -202,42 +209,18 @@ public class Araa {
 
     }
 
-    public static void createContact2(String transactionID, String type, String amount){
+    public static void createContact2(String transactionID, String type, Context context){
 
         //if(ARAA_COPPA){
 
          //   email="000000000000";
         //}
 
-        FormBody formBody = new FormBody.Builder()
-                .add("transactionId", "33333111")
-                .add("type", "ffff")
-                .add("amount", "3333121212")
-                .build();
 
 
-        Request request2 = new Request.Builder()
-                .url("https://y8bx5fnvgd.execute-api.us-east-1.amazonaws.com/test/transactions")
-                .post(formBody)
-                .build();
 
-        client.newCall(request2).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                e.printStackTrace();
-            }
 
-            @Override
-            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
 
-                if(response.isSuccessful()){
-                    ResponseBody responseBody = response.body();
-                    //String body = responseBody.string();
-                    Log.d("TAG4933", "onResponse: "+ responseBody.string());
-                }
-
-            }
-        });
 
 
 
