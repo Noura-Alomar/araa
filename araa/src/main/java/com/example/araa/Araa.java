@@ -183,7 +183,7 @@ public class Araa {
 
 
         Request request2 = new Request.Builder()
-                .url("https://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
+                .url("http://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
                 .post(formBody)
                 .build();
 
