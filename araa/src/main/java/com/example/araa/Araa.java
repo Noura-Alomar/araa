@@ -38,6 +38,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -46,8 +47,10 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -206,8 +209,39 @@ public class Araa {
         });
 
 
+        //--------------
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("KEY1", "VALUE1");
+            jsonObject.put("KEY2", "VALUE2");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-    }
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, jsonObject.toString());
+        Request request = new Request.Builder()
+                .url("https://88rj7ag8t2.execute-api.us-east-1.amazonaws.com/helloworldapipost")
+                .post(body)
+                .build();
+
+        Response response = null;
+        try {
+            response = client.newCall(request).execute();
+            String resStr = response.body().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
+
+
+
+        //-------------
+
+
+
+
 
     public static void createContact2(String transactionID, String type, Context context){
 
