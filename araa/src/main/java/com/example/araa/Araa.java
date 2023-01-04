@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.identifier.AdvertisingIdClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
@@ -299,6 +301,18 @@ public class Araa {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    public static void loadBanner(Context cn, ImageView imageView){
+
+        String url = "https://i.picsum.photos/id/329/200/300.jpg?hmac=_yLyj0EqdpQ-cX84OlMxz3YzOjjd7liq6b25ldkVSpA";
+
+        Glide.with(cn)
+                .load(url)
+                .centerCrop()
+                .into(imageView);
 
     }
 

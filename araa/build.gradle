@@ -4,6 +4,8 @@ plugins {
     //id 'com.google.firebase.crashlytics'
 }
 
+
+
 android {
     namespace 'com.example.araa'
     compileSdk 32
@@ -51,5 +53,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:18.3.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.code.gson:gson:2.10'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
 
 }
+
