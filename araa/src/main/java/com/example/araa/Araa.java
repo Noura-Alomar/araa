@@ -307,7 +307,7 @@ public class Araa {
 
     public static void loadBanner(Context cn, ImageView imageView){
 
-        String url = "https://i.picsum.photos/id/25/5000/3333.jpg?hmac=yCz9LeSs-i72Ru0YvvpsoECnCTxZjzGde805gWrAHkM";
+        String url = "https://ibb.co/bKdtsX9";
 
         Glide.with(cn)
                 .load(url)
